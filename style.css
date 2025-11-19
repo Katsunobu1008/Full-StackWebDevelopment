@@ -1,0 +1,83 @@
+/* 基本設定 */
+:root {
+  --main-bg: #f0f2f5;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --accent-color: #007bff;
+}
+
+body {
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+/* 【課題6: カードの装飾】
+  HTMLで作った .card クラスに対して記述してください。
+  - 背景色: var(--card-bg) または白
+  - 幅: 300px (固定幅はpxでOK)
+  - 余白(padding): 20px (pxでOK)
+  - 角丸(border-radius): 8px
+
+*/
+.card {
+  background-color: var(--card-bg);
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* 【課題7: 見出しのフォントサイズ】
+  .card-title クラスに対して記述してください。
+  - フォントサイズ: 1.5rem (ルート16pxの1.5倍 = 24px)
+  - 下の余白(margin-bottom): 20px
+*/
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* 【課題8: フォーム部品の共通スタイル】
+  .form-control (selectタグにつけたクラス) に対して記述してください。
+  - 横幅(width): 100%
+  - パディング: 8px
+  - 文字サイズ: 1rem
+  - 下の余白(margin-bottom): 20px
+  ※ ID(#theme-select)を使わずにクラスで指定するのがポイントです。
+*/
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* 【課題9: ボタンのベーススタイル】
+  .btn クラスに対して記述してください。
+  - パディング: 10px 20px
+  - 枠線: なし (border: none)
+  - 角丸: 4px
+  - カーソル: pointer (指マークにする)
+*/
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 【課題10: ボタンの色（モディファイア）】
+  .btn-primary クラスに対して記述してください。
+  - 背景色: var(--accent-color) または青
+  - 文字色: white
+  - 文字の太さ: bold
+*/
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: bold;
+}
