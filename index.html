@@ -1,19 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <title>CSS Flag Project</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+    <title>Display & Float</title>
+    <style>
+      /* わかりやすくするための共通設定 */
+      div,
+      span {
+        border: 2px solid #333;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
 
+      /* 1. Block (レンガ) */
+      .block-box {
+        display: block; /* デフォルトなので書かなくても同じ */
+        background-color: #ffcccc;
+        width: 100px; /* 幅を指定できる */
+      }
+
+      /* 2. Inline (単語) */
+      .inline-box {
+        display: inline; /* デフォルト */
+        background-color: #ccffcc;
+        width: 300px; /* ★これは無視されます！ */
+        height: 300px; /* ★これも無視されます！ */
+      }
+
+      /* 3. Inline-Block (ハイブリッド) */
+      .hybrid-box {
+        display: inline-block;
+        background-color: #ccccff;
+        width: 150px; /* 幅指定OK */
+        height: 50px; /* 高さ指定OK */
+      }
+
+      /* 4. Float (回り込み) */
+      .float-container {
+        border: 3px dashed orange;
+        padding: 10px;
+      }
+
+      .floated-img {
+        float: left; /* 左に浮かせる */
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        margin-right: 15px; /* テキストとの距離 */
+
+        /* 文字を中央にするための装飾 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
   <body>
-    <div class="flag">
-      <p>The Flag</p>
-      <div>
-        <div>
-          <p>of Laos</p>
-        </div>
-      </div>
+    <h2>1. Block要素 (div)</h2>
+    <div class="block-box">箱A</div>
+    <div class="block-box">箱B</div>
+    <p>↑ 横幅を指定しても、横に並ばずに縦に積まれます。</p>
+
+    <hr />
+
+    <h2>2. Inline要素 (span)</h2>
+    <span class="inline-box">単語A</span>
+    <span class="inline-box">単語B</span>
+    <span class="inline-box">単語C</span>
+    <p>↑ 幅指定が効かず、文章のように横に続きます。</p>
+
+    <hr />
+
+    <h2>3. Inline-Block要素</h2>
+    <div class="hybrid-box">ボタンA</div>
+    <div class="hybrid-box">ボタンB</div>
+    <p>↑ 横に並びつつ、箱としての大きさも持っています。</p>
+
+    <hr />
+
+    <h2>4. Float (本来の使い方)</h2>
+    <div class="float-container">
+      <div class="floated-img">画像</div>
+      <p>
+        ここに長い文章が入ります。Floatプロパティを使うと、このように画像（オレンジの箱）を避けるようにしてテキストが回り込みます。
+        まるで新聞記事のようなレイアウトになります。
+        これがFloatの本来の仕事です。画像の下に行くと、テキストは画像の下側に回り込みます。
+      </p>
     </div>
   </body>
 </html>
