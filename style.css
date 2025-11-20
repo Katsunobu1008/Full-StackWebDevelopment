@@ -1,64 +1,76 @@
-/* 共通スタイル（見やすくするため） */
+/* 共通スタイル */
 body {
   font-family: sans-serif;
   padding: 20px;
-  background-color: #f0f0f0;
+  background: #f4f4f4;
 }
 h2 {
-  border-bottom: 2px solid #333;
   margin-top: 40px;
+  border-bottom: 2px solid #333;
 }
-section {
-  background-color: white;
-  padding: 10px;
-  border: 1px solid #ccc;
-  /* 横並びがわかりやすいように高さを確保 */
-  min-height: 100px;
-}
-.box {
-  background-color: #007bff;
+.item {
+  background: #007bff;
   color: white;
-  font-size: 24px;
-  padding: 20px;
-  text-align: center;
-  /* 箱の区切りを見やすくする */
-  border: 2px solid white;
+  padding: 15px;
+  border: 1px solid white;
+  font-weight: bold;
 }
 
-/* --- ここから問題を解いてください --- */
-
-/* 【レベル1】 inline-block で横並びにせよ */
-.container-inline .box {
-  /* TODO: displayプロパティを使って横並びにしてください。
-    幅(width)は 30% くらいにしてみましょう。
-  */
-  display: inline-block;
-  width: 30%;
-  box-sizing: border-box;
-}
-
-/* 【レベル2】 Flexbox で横並びにせよ */
-.container-flex {
-  /* TODO: 親要素に魔法をかけます。
-    display: flex;
-    justify-content を使って、間隔を均等(space-between)に空けてください。
-  */
+/* --------------------------------------------------
+   Mission A: Flexboxの独壇場
+   「中身に合わせて幅を変える」「端に寄せる」はFlexboxが得意
+-------------------------------------------------- */
+.container-a {
+  /* 1次元（横並び）の指定 */
   display: flex;
-  justify-content: space-between;
-}
-.container-flex .box {
-  /* 子要素の幅は適当に（例えば width: 30%） */
-  width: 30%;
+
+  /* 通常は左詰め */
+  align-items: center;
+  background: white;
+  padding: 10px;
 }
 
-/* 【レベル3】 Grid で横並びにせよ */
-.container-grid {
-  /* TODO: 親要素にグリッドを宣言します。
-    display: grid;
-    grid-template-columns を使って、1fr 1fr 1fr (3等分) にしてください。
-    gap で隙間を 10px くらい空けてみましょう。
+/* Mission Aの攻略ポイント */
+.container-a .item:last-child {
+  /* ★ここがFlexboxの魔法！
+    「左側の余白(margin-left)を自動(auto)で最大まで取る」という指定。
+    これにより、最後の要素だけが右端に押し出されます。
+    Gridでこれをやるのは面倒です。
   */
+  margin-left: auto;
+  background: #e74c3c; /* 赤色に変更 */
+}
+
+/* --------------------------------------------------
+   Mission B: Gridの独壇場
+   「縦横をまたぐ」「場所を指定する」はGridが得意
+-------------------------------------------------- */
+.container-b {
+  /* 2次元（方眼紙）の指定 */
   display: grid;
+
+  /* 設計図を書きます。
+    横：1fr(1比率)を3つ作る = 3列
+    縦：200pxを2つ作る = 2行
+  */
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  grid-template-rows: 200px 200px;
+
+  gap: 10px; /* 隙間 */
+  background: white;
+  padding: 10px;
+}
+
+/* Mission Bの攻略ポイント */
+.container-b .item-1 {
+  /* ★ここがGridの魔法！
+    「縦のラインの1番目から3番目まで占領せよ」という命令。
+    (1番目の線) [マス] (2番目の線) [マス] (3番目の線)
+    つまり「縦2マス分」を結合します。
+    Flexboxで「縦結合」は、HTMLをいじらない限り不可能です。
+  */
+  grid-row: 1 / 3;
+
+  background: #2ecc71; /* 緑色に変更 */
+  font-size: 2rem;
 }
