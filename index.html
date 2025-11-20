@@ -2,14 +2,31 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Media Query Demo</title>
+    <title>Layout Challenge</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="chameleon-box">
-      <h1 class="status-text">現在のデバイス：スマホ</h1>
-      <p>ブラウザの幅を広げたり縮めたりしてください。</p>
-    </div>
+    <h1>レイアウト・バトル：箱を3つ横に並べよ！</h1>
+
+    <h2>1. inline-block</h2>
+    <section class="container-inline">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </section>
+
+    <h2>2. Flexbox</h2>
+    <section class="container-flex">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </section>
+
+    <h2>3. Grid</h2>
+    <section class="container-grid">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </section>
   </body>
 </html>

@@ -1,34 +1,64 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Layout Challenge</title>
-  <link rel="stylesheet" href="layout-practice.css">
-</head>
-<body>
+/* 共通スタイル（見やすくするため） */
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+h2 {
+  border-bottom: 2px solid #333;
+  margin-top: 40px;
+}
+section {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  /* 横並びがわかりやすいように高さを確保 */
+  min-height: 100px;
+}
+.box {
+  background-color: #007bff;
+  color: white;
+  font-size: 24px;
+  padding: 20px;
+  text-align: center;
+  /* 箱の区切りを見やすくする */
+  border: 2px solid white;
+}
 
-  <h1>レイアウト・バトル：箱を3つ横に並べよ！</h1>
+/* --- ここから問題を解いてください --- */
 
-  <h2>1. inline-block</h2>
-  <section class="container-inline">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-  </section>
+/* 【レベル1】 inline-block で横並びにせよ */
+.container-inline .box {
+  /* TODO: displayプロパティを使って横並びにしてください。
+    幅(width)は 30% くらいにしてみましょう。
+  */
+  display: inline-block;
+  width: 30%;
+  box-sizing: border-box;
+}
 
-  <h2>2. Flexbox</h2>
-  <section class="container-flex">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-  </section>
+/* 【レベル2】 Flexbox で横並びにせよ */
+.container-flex {
+  /* TODO: 親要素に魔法をかけます。
+    display: flex;
+    justify-content を使って、間隔を均等(space-between)に空けてください。
+  */
+  display: flex;
+  justify-content: space-between;
+}
+.container-flex .box {
+  /* 子要素の幅は適当に（例えば width: 30%） */
+  width: 30%;
+}
 
-  <h2>3. Grid</h2>
-  <section class="container-grid">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-  </section>
-
-</body>
-</html>
+/* 【レベル3】 Grid で横並びにせよ */
+.container-grid {
+  /* TODO: 親要素にグリッドを宣言します。
+    display: grid;
+    grid-template-columns を使って、1fr 1fr 1fr (3等分) にしてください。
+    gap で隙間を 10px くらい空けてみましょう。
+  */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
