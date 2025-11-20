@@ -1,37 +1,81 @@
-.flag {
-  width: 900px;
-  height: 600px;
-  position: relative;
-  background-color: #ce1126;
-}
-
-.flag > div {
-  background-color: #002868;
-  height: 300px;
-  width: 100%;
-  position: absolute;
-  top: 150px;
-}
-
-.flag > div > div {
-  background-color: white;
-  position: absolute;
-
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  top: 50px;
-  left: 350px;
-}
-
-p {
-  font-size: 5rem;
-  color: white;
-  text-align: center;
-  padding: 0;
+/* ----------------------------------------------------
+  1. ベーススタイル（スマホ用 / Default）
+  プロの定石：
+  「まずはスマホ（一番小さい画面）」のスタイルを基本として書きます。
+  これを「モバイルファースト」と呼びます。
+  ----------------------------------------------------
+*/
+body {
   margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  /* 文字を画面のど真ん中に置くためのFlexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面の高さいっぱい */
+  background-color: #f0f0f0;
 }
 
-.flag > div div p {
-  color: black;
+.chameleon-box {
+  width: 90%; /* スマホでは画面幅いっぱいに */
+  padding: 40px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+
+  /* 【スマホの色】: 赤 (Red) */
+  background-color: #ff6b6b;
+
+  /* 色が変わる時にふわっとさせる（高級感） */
+  transition: background-color 0.5s ease, width 0.5s ease;
+}
+
+/* 擬似要素を使ってテキストを書き換えるテクニック（CSSだけで文字変更） */
+.status-text::after {
+  content: ' (Mobile)';
+  font-size: 0.8rem;
+}
+
+/* ----------------------------------------------------
+  2. タブレット用（画面幅が 600px 以上の場合）
+  @media (min-width: 600px)
+  意味：「最低でも600pxあるなら（＝600pxより大きいなら）」
+  ----------------------------------------------------
+*/
+@media (min-width: 600px) {
+  .chameleon-box {
+    width: 70%; /* 少し幅を狭める */
+
+    /* 【タブレットの色】: 青 (Blue) */
+    background-color: #4ecdc4;
+  }
+
+  /* スマホ用の文字を上書きして変更 */
+  .status-text {
+    font-size: 2rem; /* 文字を大きく */
+  }
+
+  .status-text::after {
+    content: ' (Tablet)';
+  }
+}
+
+/* ----------------------------------------------------
+  3. PC / デスクトップ用（画面幅が 1024px 以上の場合）
+  さらに画面が広くなった時の上書き設定です。
+  ----------------------------------------------------
+*/
+@media (min-width: 1024px) {
+  .chameleon-box {
+    width: 500px; /* 固定幅にする */
+
+    /* 【PCの色】: 黄色 (Yellow/Orange) */
+    background-color: #ffe66d;
+    color: #333; /* 背景が明るいので文字を黒にする */
+  }
+
+  .status-text::after {
+    content: ' (Desktop)';
+  }
 }
