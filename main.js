@@ -423,3 +423,19 @@
 // }
 
 // vegetableColor(2 && 4);
+
+// let count = 0;
+// while (count < 10) {
+//   console.log('while count:', count);
+//   count++;
+// }
+
+// let tomatoCount = 0;
+// do {
+//   console.log('do-while tomatoCount:', tomatoCount);
+//   tomatoCount++;
+// } while (tomatoCount < 10);
+
+// for (let i = 0, t = 0; i < 10, t < 10; i += 1, t += 1) {
+//   console.log('i*t=', i * t);
+// }
