@@ -439,3 +439,122 @@
 // for (let i = 0, t = 0; i < 10, t < 10; i += 1, t += 1) {
 //   console.log('i*t=', i * t);
 // }
+
+/*---------------
+    関数について
+-----------------*/
+function add(a, b) {
+  return a + b;
+}
+
+console.dir(add); // 8
+console.log(add.name);
+console.log(add.length);
+// 関数はオブジェクトを内部的に作っている。
+//変数addに関数オブジェクトが入っている。
+//nameプロパティは関数名、lengthプロパティは引数の数を表す。
+
+// 関数オブジェクトは、関数定義時に自動的に作られる。
+// 関数オブジェクトには、nameやlength以外にも色々なプロパティやメソッドがある。
+// 例えば、callメソッドやapplyメソッドを使うと、関数を呼び出すことができる。
+// つまり、関数は「実行機能がついたオブジェクト」であり、「実行できるオブジェクト」であると言える。
+// // コピーするよりも参照した方が効率的なので、関数オブジェクトは変数に代入したり、引数として渡したり、戻り値として返したりできる。
+
+// // 例えば、以下のように関数を変数に代入することができる。
+// const sum = add;
+// console.log(sum(3, 4)); // 7
+
+// // また、関数を引数として渡すこともできる。
+// function calculate(a, b, func) {
+//   return func(a, b);
+// }
+// console.log(calculate(5, 6, add)); // 11
+
+// // さらに、関数を戻り値として返すこともできる。
+// function createAdder(x) {
+//   return function (y) {
+//     return x + y;
+//   };
+// }
+// const add10 = createAdder(10);
+// console.log(add10(5)); // 15
+
+// これらの例からわかるように、関数はオブジェクトとして扱うことができ、その柔軟性を活かして様々なプログラミングパターンを実現できる。
+
+// 関数宣言とメソッドの違いは、メソッドはオブジェクトの状態を操作することである。メソッドはオブジェクトのプロパティとして登録された関数のこと。
+
+// sayHi = function (name) {
+//   return console.log('Hi ' + name);
+// };
+
+// sayHi02 = (name) => {
+//   return console.log('Hi ' + name);
+// };
+// sayHi('Taro');
+// sayHi02('Jiro');
+
+// const sum = (...nums) => {
+//   // nums は「本物の配列」なので、reduce（畳み込み演算）が使える！
+//   return nums.reduce((total, current) => total + current, 0);
+// };
+// //上記のコードを正しく書くならば、以下のようになります。
+//   // const sum = function (...nums) {
+
+// console.log(sum(1, 2, 3, 4, 5)); // 15
+
+const introduceTeam = (teamName, ...members) => {
+  console.log(`Team: ${teamName}`);
+  console.log('Members:');
+  for (const member of members) {
+    console.log(`- ${member}`);
+  }
+};
+
+introduceTeam('Developers', 'Alice', 'Bob', 'Charlie');
+
+// グローバルオブジェクトについて
+// グローバルオブジェクトとは、JavaScriptの実行環境において、どこからでもアクセスできる特別なオブジェクトのことです。
+// ブラウザ環境では「window」オブジェクト、Node.js環境では「global」オブジェクトがグローバルオブジェクトに該当します。
+// ES2020以降では、環境に依存しないグローバルオブジェクトとして「globalThis」が導入されました。
+// これにより、どの実行環境でも一貫してグローバルオブジェクトにアクセスできるようになりました。
+console.log(globalThis);
+
+// レキシカル環境というのは、Javascriptがコードを実行するときに生成される隠しデータみたいなもの、キーとバリューなどの情報を持ったオブジェクトのデータの集合体みたいなもの。
+// console.log()などのレキシカル環境という静的なオブジェクトのデータ集合を参照している。あるレキシカル環境Aがあって、その環境にほしいデータなどがなかった場合は、別のレキシカル環境Bを参照しに行く。みたいなイメージ。オブジェクトを記述すると毎回生成されるもの。これがエクマスクリプトの仕様に記述されている。チェーン状につながっている。そしてこれが関数の応用利用につながっている。
+// 関数を呼び出したときに現れるもの。関数を呼び出すごとにレキシカル環境が生成されて、その中に様々なプロパティやデータが入っていく。
+// レキシカル環境を指し示す関数オブジェクトのことをクロージャとも言う。
+// 関数オブジェクトが生成されたときにレキシカル環境が作られるが、その中に関数オブジェクトされたときにつくられるいくつかのプロパティのうちの一つに[[Environment]]というプロパティがある。
+// [[Environment]]プロパティは、その関数が定義されたときのレキシカル環境を指し示している。
+// 例えば、関数内で変数を参照するとき、その変数が関数内に存在しない場合、[[Environment]]プロパティを通じて外側のレキシカル環境を参照しに行く。
+// これにより、関数は自分が定義された場所のスコープチェーンを辿って変数を解決することができる。
+// つまり、[[Environment]]プロパティは関数がどのスコープで定義されたかを記憶しており、そのスコープチェーンを通じて変数や関数を参照できるようにする重要な役割を果たしている。
+// これがクロージャの基本的な仕組みであり、関数が外部の変数にアクセスできる理由でもある。
+
+// let generationPerson = () => {
+//   return {
+//     name: 'Taro',
+//     age: 0,
+//   };
+// };
+
+// const taro = generationPerson();
+// console.log(taro);
+
+let generationPerson = (name) => {
+  let age = 0;
+  return {
+    name: 'taro',
+    increment: () => {
+      age++;
+      return age;
+    },
+  };
+};
+
+const taro = generationPerson('Taro');
+console.log(taro.increment()); // 1
+console.log(taro.increment()); // 2
+console.log(taro.increment()); // 3
+
+// 2025/11/22はセクション8，9が終わるとベスト。そしてセクション10まで行けば最高。
+// 12月に入るまでにJavascriptとnode.jsのUdemyの講座が終わると良い。
