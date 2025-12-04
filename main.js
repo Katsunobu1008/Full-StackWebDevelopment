@@ -558,3 +558,21 @@ console.log(taro.increment()); // 3
 
 // 2025/11/22はセクション8，9が終わるとベスト。そしてセクション10まで行けば最高。
 // 12月に入るまでにJavascriptとnode.jsのUdemyの講座が終わると良い。
+
+let generationPerson02 = (name) => {
+  let age = 0;
+  return {
+    name: name,
+    getAge: () => age,
+    birthday: () => {
+      age++;
+      return age;
+    },
+  };
+};
+
+const jiro = generationPerson02('Jiro');
+console.log(jiro.getAge()); // 0
+console.log(jiro.birthday()); // 1
+console.log(jiro.birthday()); // 2
+console.log(jiro.getAge()); // 2
